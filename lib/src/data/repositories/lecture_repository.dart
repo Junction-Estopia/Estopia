@@ -10,16 +10,24 @@ class LectureRepository {
         videoAspectRatio: 16 / 9,
         duration: 7,
         subtitle: Subtitle(
-          origin: OriginSubtitle(
+          origin: HighlightedSubtitle(
             text:
-                "There are three primary theories. Cocerning sediment flow rate. Each of these theories can be further subcategorized.",
+                "There are three primary theories cocerning sediment flow rate. Each of these theories can be further subcategorized.",
             highlightedText:
-                "There are three primary theories. Cocerning sediment flow rate. Each of these theories can be further subcategorized.",
+                "There are three primary theories <b>cocerning</b> sediment flow rate. Each of these theories <b>can be further subcategorized.</b>",
           ),
-          mixed:
-              "There are <b>세 가지</b> primary <b>원리</b>. Cocerning sediment flow <b>흐름</b>. Each of these theories can be further subcategorized.",
-          korean:
-              "퇴적물 흐름 속도에 관한 세 가지 주요 원리가 있습니다. 이러한 각 이론은 더 세부적으로 분류될 수 있습니다.",
+          mixed: HighlightedSubtitle(
+            text:
+                "There are 세 가지 primary 원리. Cocerning sediment flow 흐름. Each of these theories can  further .",
+            highlightedText:
+                "There are <b>세 가지</b> primary <b>원리</b>. Cocerning sediment flow <b>흐름</b>. Each of these theories can be further subcategorized.",
+          ),
+          korean: HighlightedSubtitle(
+            text:
+                "침전물 흐름 속도에 관한 세 가지 주요 원리가 있습니다. 이러한 각 이론은 더 세부적으로 분류될 수 있습니다.",
+            highlightedText:
+                "있습니다 세 가지 주요 원리가. 관한 침전물 흐름 속도에. 이러한 각 이론은 될 수 있습니다 더 더 세부적으로 분류될 수.",
+          ),
         ),
         vocabularyies: [
           Vocabulary(word: "Sediment", meanings: {"N": "침전물"}),
@@ -35,15 +43,24 @@ class LectureRepository {
         videoAspectRatio: 16 / 9,
         duration: 7,
         subtitle: Subtitle(
-          origin: OriginSubtitle(
+          origin: HighlightedSubtitle(
             text:
                 "There are three primary theories cocerning sediment flow rate. Each of these theories can be further subcategorized.",
             highlightedText:
-                "There are three primary theories <b>Cocerning</b> sediment flow rate. Each of these theories <b>can be further subcategorized</b>.",
+                "There are three primary theories <b>cocerning</b> sediment flow rate. Each of these theories <b>can be further subcategorized</b>.",
           ),
-          mixed:
-              "it's the last thing i do is 운전 that car I will take that life men thousand times",
-          korean: "제가 할 수 있는 일이 없을까요? 뭐 하시고 싶은 거는요?",
+          mixed: HighlightedSubtitle(
+            text:
+                "There are 세 가지 primary 원리. Cocerning sediment flow 흐름. Each of these theories can  further .",
+            highlightedText:
+                "There are <b>세 가지</b> primary <b>원리</b>. Cocerning sediment flow <b>흐름</b>. Each of these theories can be further subcategorized.",
+          ),
+          korean: HighlightedSubtitle(
+            text:
+                "침전물 흐름 속도에 관한 세 가지 주요 원리가 있습니다. 이러한 각 이론은 더 세부적으로 분류될 수 있습니다.",
+            highlightedText:
+                "있습니다 세 가지 주요 원리가. 관한 침전물 흐름 속도에. 이러한 각 이론은 될 수 있습니다 더 더 세부적으로 분류될 수.",
+          ),
         ),
         vocabularyies: [
         ]

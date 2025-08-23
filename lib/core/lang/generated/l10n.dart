@@ -94,6 +94,16 @@ class S {
   String get vocabulary {
     return Intl.message('Vocabulary', name: 'vocabulary', desc: '', args: []);
   }
+
+  /// `Get to know English word order`
+  String get koreanGuide {
+    return Intl.message(
+      'Get to know English word order',
+      name: 'koreanGuide',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

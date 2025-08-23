@@ -10,4 +10,7 @@ enum SubtitleMode {
     SubtitleMode.mixed => S.current.mixedMode,
     SubtitleMode.korean => S.current.koreanMode,
   };
+
+  bool get isOrgin => this == origin;
+  bool get isMixed => this == mixed;
 }

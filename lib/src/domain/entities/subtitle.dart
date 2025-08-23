@@ -1,7 +1,7 @@
 class Subtitle {
-  final OriginSubtitle origin;
-  final String mixed;
-  final String korean;
+  final HighlightedSubtitle origin;
+  final HighlightedSubtitle mixed;
+  final HighlightedSubtitle korean;
 
   const Subtitle({
     required this.origin,
@@ -10,11 +10,11 @@ class Subtitle {
   });
 }
 
-class OriginSubtitle {
+class HighlightedSubtitle {
   final String text;
   final String highlightedText;
 
-  const OriginSubtitle({
+  const HighlightedSubtitle({
     required this.text,
     required this.highlightedText,
   });

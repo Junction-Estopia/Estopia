@@ -1,5 +1,6 @@
 import 'package:estopia/core/base/base_view.dart';
 import 'package:estopia/core/lang/generated/l10n.dart';
+import 'package:estopia/core/themes/components/anim/anim_trans_opacity.dart';
 import 'package:estopia/core/themes/components/buttons/button.dart';
 import 'package:estopia/core/themes/components/extensions/gap.dart';
 import 'package:estopia/core/themes/components/loader/loader.dart';
@@ -144,7 +145,12 @@ class HomeView extends StatelessWidget {
                                           },
                                         ),
 
-                                        const SizedBox(width: 16),
+                                        Text(
+                                          "${state.index + 1}/${state.lectures.length}",
+                                          style: context.typo.body1.copyWith(
+                                            color: context.color.text3,
+                                          ),
+                                        ),
 
                                         /// Right button
                                         Button(
@@ -189,10 +195,33 @@ class HomeView extends StatelessWidget {
                                     /// Action
                                     Positioned(
                                       right: 0,
-                                      child: CupertinoSwitch(
-                                        value: state.hasOriginBold,
-                                        activeTrackColor: context.color.accent,
-                                        onChanged: viewModel.changeOriginBold,
+                                      child: AnimTransOpacity(
+                                        isShow: switch (state.subtitleMode) {
+                                          SubtitleMode.origin => true,
+                                          SubtitleMode.mixed => false,
+                                          SubtitleMode.korean => true,
+                                        },
+                                        child: CupertinoSwitch(
+                                          value: switch (state.subtitleMode) {
+                                            SubtitleMode.origin =>
+                                              state.hasOriginBold,
+                                            SubtitleMode.mixed =>
+                                              state.hasEnglishReorder,
+                                            SubtitleMode.korean =>
+                                              state.hasEnglishReorder,
+                                          },
+                                          activeTrackColor:
+                                              context.color.accent,
+                                          onChanged: switch (state
+                                              .subtitleMode) {
+                                            SubtitleMode.origin =>
+                                              viewModel.changeOriginBold,
+                                            SubtitleMode.mixed =>
+                                              viewModel.changeEnglishReorder,
+                                            SubtitleMode.korean =>
+                                              viewModel.changeEnglishReorder,
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -207,47 +236,64 @@ class HomeView extends StatelessWidget {
                                 ),
                                 child: DefaultTextStyle(
                                   style: context.typo.headline4,
-                                  child: switch (state.subtitleMode) {
-                                    SubtitleMode.origin => () {
-                                      final origin =
-                                          state.lecture.subtitle.origin;
-                                      return state.hasOriginBold
-                                          ? HighlightedText(
-                                              textAlign: TextAlign.center,
-                                              origin.highlightedText,
-                                              color: context.color.accent,
-                                            )
-                                          : Text(
-                                              origin.text,
-                                              textAlign: TextAlign.center,
-                                            );
-                                    }(),
-                                    SubtitleMode.mixed => Text(
-                                      state.lecture.subtitle.mixed,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    SubtitleMode.korean => Text(
-                                      state.lecture.subtitle.korean,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  },
+                                  child: () {
+                                    final isHighlighted =
+                                        switch (state.subtitleMode) {
+                                          SubtitleMode.origin =>
+                                            state.hasOriginBold,
+                                          SubtitleMode.mixed => true,
+                                          SubtitleMode.korean =>
+                                            state.hasEnglishReorder,
+                                        };
+                                    return isHighlighted
+                                        ? HighlightedText(
+                                            textAlign: TextAlign.center,
+                                            state.subtitle.highlightedText,
+                                            color: state.subtitleMode.isMixed
+                                                ? context.color.text1
+                                                      .withValues(
+                                                        alpha: 0.25,
+                                                      )
+                                                : context.color.accent,
+                                          )
+                                        : Text(
+                                            state.subtitle.text,
+                                            textAlign: TextAlign.center,
+                                          );
+                                  }(),
                                 ),
                               ),
-
                               const SizedBox(height: 24),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Palette.grey100,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 8,
-                                  horizontal: 32,
-                                ),
-                                child: Text(
-                                  S.current.originGuide,
-                                  style: context.typo.body2.copyWith(
-                                    color: Palette.grey500,
+                              AnimTransOpacity(
+                                isShow: switch (state.subtitleMode) {
+                                  SubtitleMode.origin => state.hasOriginBold,
+                                  SubtitleMode.mixed => false,
+                                  SubtitleMode.korean =>
+                                    state.hasEnglishReorder,
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Palette.grey100,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 8,
+                                    horizontal: 32,
+                                  ),
+                                  child: Text(
+                                    switch (state.subtitleMode) {
+                                      SubtitleMode.origin =>
+                                        S.current.originGuide,
+                                      SubtitleMode.mixed =>
+                                        state.preSubtitleMode.isOrgin
+                                            ? S.current.originGuide
+                                            : S.current.koreanGuide,
+                                      SubtitleMode.korean =>
+                                        S.current.koreanGuide,
+                                    },
+                                    style: context.typo.body2.copyWith(
+                                      color: Palette.grey500,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -255,65 +301,74 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
 
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: context.color.border,
+                        /// Vocabulary
+                        AnimTransOpacity(
+                          isShow: state.lecture.vocabularyies.isNotEmpty,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: context.color.border,
+                              ),
                             ),
-                          ),
-                          padding: EdgeInsets.all(12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 4),
-                                child: Text(
-                                  S.current.vocabulary,
-                                  style: context.typo.headline4.copyWith(
-                                    color: context.color.accent,
-                                    fontWeight: FontWeight.bold,
+                            padding: EdgeInsets.all(12),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 4),
+                                  child: Text(
+                                    S.current.vocabulary,
+                                    style: context.typo.headline4.copyWith(
+                                      color: context.color.accent,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              ...state.lecture.vocabularyies.map((vocabulary) {
-                                return Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        vocabulary.word,
-                                        textAlign: TextAlign.start,
-                                        style: context.typo.headline6.copyWith(
-                                          fontWeight: context.typo.semiBold,
+                                ...state.lecture.vocabularyies.map((
+                                  vocabulary,
+                                ) {
+                                  return Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          vocabulary.word,
+                                          textAlign: TextAlign.start,
+                                          style: context.typo.headline6
+                                              .copyWith(
+                                                fontWeight:
+                                                    context.typo.semiBold,
+                                              ),
                                         ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: vocabulary.meanings.entries
-                                            .map(
-                                              (entry) {
-                                                final (pos, meaning) = (
-                                                  entry.key,
-                                                  entry.value,
-                                                );
-                                                return Text(
-                                                  "$pos. $meaning",
-                                                  style: context.typo.body1,
-                                                );
-                                              },
-                                            )
-                                            .toList(),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: vocabulary.meanings.entries
+                                              .map(
+                                                (entry) {
+                                                  final (pos, meaning) = (
+                                                    entry.key,
+                                                    entry.value,
+                                                  );
+                                                  return Text(
+                                                    "$pos. $meaning",
+                                                    style: context.typo.body1,
+                                                  );
+                                                },
+                                              )
+                                              .toList(),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              }),
-                            ].gap(8),
+                                    ],
+                                  );
+                                }),
+                              ].gap(8),
+                            ),
                           ),
                         ),
                       ].gap(8),

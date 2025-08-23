@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "appName": MessageLookupByLibrary.simpleMessage("에스토피아"),
+    "koreanGuide": MessageLookupByLibrary.simpleMessage("영어 어순과 친해져 보세요."),
     "koreanMode": MessageLookupByLibrary.simpleMessage("한국어 모드"),
     "mixedMode": MessageLookupByLibrary.simpleMessage("믹스 모드"),
     "originGuide": MessageLookupByLibrary.simpleMessage("꼭 들어야 할 부분이 강조돼 있어요."),

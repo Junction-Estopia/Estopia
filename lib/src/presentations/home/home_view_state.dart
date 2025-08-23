@@ -1,5 +1,6 @@
 import 'package:estopia/src/domain/entities/lecture.dart';
 import 'package:estopia/src/domain/entities/player_speed.dart';
+import 'package:estopia/src/domain/entities/subtitle.dart';
 import 'package:estopia/src/domain/entities/subtitle_mode.dart';
 import 'package:video_player/video_player.dart';
 
@@ -15,21 +16,30 @@ class LoadingState extends HomeViewState {
 }
 
 class LoadedState extends HomeViewState {
+  final SubtitleMode preSubtitleMode;
   final SubtitleMode subtitleMode;
   final bool hasOriginBold;
+  final bool hasEnglishReorder;
   final VideoPlayerController videoController;
   final PlayerSpeed playerSpeed;
 
   Lecture get lecture => lectures[index];
   bool get isPrevious => index > 0;
   bool get isNext => index < lectures.length - 1;
+  HighlightedSubtitle get subtitle => switch (subtitleMode) {
+    SubtitleMode.origin => lecture.subtitle.origin,
+    SubtitleMode.mixed => lecture.subtitle.mixed,
+    SubtitleMode.korean => lecture.subtitle.korean,
+  };
 
   LoadedState({
     required super.index,
     required super.lectures,
+    required this.preSubtitleMode,
     this.playerSpeed = PlayerSpeed.x1_0,
     required this.subtitleMode,
     required this.hasOriginBold,
+    required this.hasEnglishReorder,
     required this.videoController,
   });
 
@@ -37,16 +47,20 @@ class LoadedState extends HomeViewState {
     int? index,
     List<Lecture>? lectures,
     PlayerSpeed? playerSpeed,
+    SubtitleMode? preSubtitleMode,
     SubtitleMode? subtitleMode,
     bool? hasOriginBold,
+    bool? hasEnglishReorder,
     VideoPlayerController? videoController,
   }) {
     return LoadedState(
       index: index ?? this.index,
       lectures: lectures ?? this.lectures,
       playerSpeed: playerSpeed ?? this.playerSpeed,
+      preSubtitleMode: preSubtitleMode ?? this.preSubtitleMode,
       subtitleMode: subtitleMode ?? this.subtitleMode,
       hasOriginBold: hasOriginBold ?? this.hasOriginBold,
+      hasEnglishReorder: hasEnglishReorder ?? this.hasEnglishReorder,
       videoController: videoController ?? this.videoController,
     );
   }

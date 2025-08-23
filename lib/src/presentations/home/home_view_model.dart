@@ -29,7 +29,9 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
           index: index,
           lectures: lectures,
           subtitleMode: SubtitleMode.origin,
+          preSubtitleMode: SubtitleMode.origin,
           hasOriginBold: true,
+          hasEnglishReorder: true,
           videoController: videoController,
         ),
       );
@@ -38,13 +40,34 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
 
   void changeSubtitleModel(SubtitleMode subtitleMode) {
     final loadedState = state as LoadedState;
-    emit(loadedState.copyWith(subtitleMode: subtitleMode));
+    emit(
+      loadedState.copyWith(
+        preSubtitleMode: loadedState.subtitleMode,
+        subtitleMode: subtitleMode,
+      ),
+    );
   }
 
   void changeLecture(int index) {
     final loadedState = state as LoadedState;
     loadedState.videoController.dispose();
-    init(index);
+    final lecture = loadedState.lectures[index];
+    final videoController =
+        VideoPlayerController.asset(
+            lecture.video,
+          )
+          ..setLooping(true)
+          ..setPlaybackSpeed(PlayerSpeed.x1_0.ratio);
+    videoController.initialize().then((_) {
+      videoController.play();
+      emit(
+        loadedState.copyWith(
+          index: index,
+          subtitleMode: SubtitleMode.origin,
+          videoController: videoController,
+        ),
+      );
+    });
   }
 
   void changePlayerSpeed() {
@@ -54,6 +77,15 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
     emit(
       loadedState.copyWith(
         playerSpeed: nextPlayerSpeed,
+      ),
+    );
+  }
+
+  void changeEnglishReorder(bool hasEnglishReorder) {
+    final loadedState = state as LoadedState;
+    emit(
+      loadedState.copyWith(
+        hasEnglishReorder: hasEnglishReorder,
       ),
     );
   }
