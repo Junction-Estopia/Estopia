@@ -23,6 +23,7 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
         LoadedState(
           lecture: lecture,
           subtitleMode: SubtitleMode.origin,
+          hasOriginBold: true,
           videoController: videoController,
         ),
       );

@@ -14,6 +14,7 @@ class Button extends StatefulWidget {
     this.decoration,
     this.padding,
     this.builder,
+    this.disabled = false,
     required this.onTap,
   });
 
@@ -25,6 +26,7 @@ class Button extends StatefulWidget {
   final double? height;
   final Decoration? decoration;
   final EdgeInsets? padding;
+  final bool disabled;
   final Widget Function(bool isPressed)? builder;
   final VoidCallback onTap;
 
