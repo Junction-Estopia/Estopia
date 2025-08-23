@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
         LoadingState(),
         lectureRepository: context.read(),
       ),
-      onInit: (context, viewModel) => viewModel.init(),
+      onInit: (context, viewModel) => viewModel.init(0),
       builder: (context, viewModel, state) => Scaffold(
         body: SafeArea(
           child: switch (state) {
@@ -73,11 +73,17 @@ class HomeView extends StatelessWidget {
                     children: [
                       /// Left button
                       Button(
+                        disabled: !state.isPrevious,
                         padding: EdgeInsets.all(0),
                         builder: (isPressed) => Icon(
                           CupertinoIcons.chevron_left,
+                          color: isPressed
+                              ? context.color.text4
+                              : context.color.text1,
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          viewModel.changeLecture(state.index - 1);
+                        },
                       ),
 
                       /// Subscription
@@ -100,11 +106,17 @@ class HomeView extends StatelessWidget {
 
                       /// Right button
                       Button(
+                        disabled: !state.isNext,
                         padding: EdgeInsets.all(0),
                         builder: (isPressed) => Icon(
                           CupertinoIcons.chevron_right,
+                          color: isPressed
+                              ? context.color.text4
+                              : context.color.text1,
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          viewModel.changeLecture(state.index + 1);
+                        },
                       ),
                     ],
                   ),

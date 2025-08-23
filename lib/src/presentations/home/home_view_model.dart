@@ -12,16 +12,18 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
 
   final LectureRepository lectureRepository;
 
-  void init() {
-    final lecture = lectureRepository.get();
+  void init(int index) {
+    final lectures = lectureRepository.fetch();
+    final lecture = lectures[index];
     final videoController = VideoPlayerController.asset(
-      "assets/videos/sample.mp4",
+      lecture.video,
     )..setLooping(true);
     videoController.initialize().then((_) {
       videoController.play();
       emit(
         LoadedState(
-          lecture: lecture,
+          index: index,
+          lectures: lectures,
           subtitleMode: SubtitleMode.origin,
           hasOriginBold: true,
           videoController: videoController,
@@ -33,5 +35,11 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
   void changeSubtitleModel(SubtitleMode subtitleMode) {
     final loadedState = state as LoadedState;
     emit(loadedState.copyWith(subtitleMode: subtitleMode));
+  }
+
+  void changeLecture(int index) {
+    final loadedState = state as LoadedState;
+    loadedState.videoController.dispose();
+    init(index);
   }
 }

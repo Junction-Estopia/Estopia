@@ -58,7 +58,7 @@ class _ButtonState extends State<Button> {
         padding: widget.padding ?? EdgeInsets.symmetric(horizontal: 16),
         decoration: widget.decoration,
         child:
-            widget.builder?.call(isPressed) ??
+            widget.builder?.call(widget.disabled ? true : isPressed) ??
             Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +67,11 @@ class _ButtonState extends State<Button> {
                   Text(
                     widget.text!,
                     style: (widget.textStyle ?? context.typo.headline4)
-                        .copyWith(color: widget.textColor),
+                        .copyWith(
+                          color: widget.disabled
+                              ? context.color.text4
+                              : widget.textColor,
+                        ),
                   ),
 
                 if (widget.icon != null)
