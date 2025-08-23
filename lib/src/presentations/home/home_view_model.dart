@@ -1,5 +1,6 @@
 import 'package:estopia/core/base/base_view_model.dart';
 import 'package:estopia/src/data/repositories/lecture_repository.dart';
+import 'package:estopia/src/domain/entities/lecture.dart';
 import 'package:estopia/src/domain/entities/player_speed.dart';
 import 'package:estopia/src/domain/entities/subtitle_mode.dart';
 import 'package:estopia/src/presentations/home/home_view_state.dart';
@@ -13,17 +14,32 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
 
   final LectureRepository lectureRepository;
 
+  void _videoController(
+    Lecture lecture,
+    void Function(VideoPlayerController playerController) callback,
+  ) {
+    final videoController = VideoPlayerController.asset(
+      lecture.video,
+    )..setPlaybackSpeed(PlayerSpeed.x1_0.ratio);
+    videoController.initialize().then((_) {
+      videoController.play();
+      videoController.addListener(() async {
+        final isEnd =
+            videoController.value.position >= videoController.value.duration;
+        if (isEnd) {
+          await Future.delayed(Duration(milliseconds: 1000), () {
+            videoController.play();
+          });
+        }
+      });
+      callback(videoController);
+    });
+  }
+
   void init(int index) {
     final lectures = lectureRepository.fetch();
     final lecture = lectures[index];
-    final videoController =
-        VideoPlayerController.asset(
-            lecture.video,
-          )
-          ..setLooping(true)
-          ..setPlaybackSpeed(PlayerSpeed.x1_0.ratio);
-    videoController.initialize().then((_) {
-      videoController.play();
+    _videoController(lecture, (videoController) {
       emit(
         LoadedState(
           index: index,
@@ -53,14 +69,7 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
     final loadedState = state as LoadedState;
     loadedState.videoController.dispose();
     final lecture = loadedState.lectures[index];
-    final videoController =
-        VideoPlayerController.asset(
-            lecture.video,
-          )
-          ..setLooping(true)
-          ..setPlaybackSpeed(PlayerSpeed.x1_0.ratio);
-    videoController.initialize().then((_) {
-      videoController.play();
+    _videoController(lecture, (videoController) {
       emit(
         loadedState.copyWith(
           index: index,

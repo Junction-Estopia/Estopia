@@ -41,6 +41,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 VideoProgressIndicator(
+                  key: ValueKey(state.lecture.video),
                   state.videoController,
                   padding: EdgeInsets.all(0),
                   allowScrubbing: true,
