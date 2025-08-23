@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:estopia/core/themes/components/assets/icon_asset.dart';
 import 'package:estopia/src/services/theme_service.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +54,8 @@ class _ButtonState extends State<Button> {
         width: widget.width,
         height: widget.height,
         constraints: BoxConstraints(
-          minHeight: 48,
-          minWidth: 48,
+          minHeight: min(widget.height ?? 48, 48),
+          minWidth: min(widget.width ?? 48, 48),
         ),
         padding: widget.padding ?? EdgeInsets.symmetric(horizontal: 16),
         decoration: widget.decoration,

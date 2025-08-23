@@ -1,5 +1,6 @@
 import 'package:estopia/core/base/base_view_model.dart';
 import 'package:estopia/src/data/repositories/lecture_repository.dart';
+import 'package:estopia/src/domain/entities/player_speed.dart';
 import 'package:estopia/src/domain/entities/subtitle_mode.dart';
 import 'package:estopia/src/presentations/home/home_view_state.dart';
 import 'package:video_player/video_player.dart';
@@ -15,9 +16,12 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
   void init(int index) {
     final lectures = lectureRepository.fetch();
     final lecture = lectures[index];
-    final videoController = VideoPlayerController.asset(
-      lecture.video,
-    )..setLooping(true);
+    final videoController =
+        VideoPlayerController.asset(
+            lecture.video,
+          )
+          ..setLooping(true)
+          ..setPlaybackSpeed(PlayerSpeed.x1_0.ratio);
     videoController.initialize().then((_) {
       videoController.play();
       emit(
@@ -41,5 +45,16 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
     final loadedState = state as LoadedState;
     loadedState.videoController.dispose();
     init(index);
+  }
+
+  void changePlayerSpeed() {
+    final loadedState = state as LoadedState;
+    final nextPlayerSpeed = loadedState.playerSpeed.next;
+    loadedState.videoController.setPlaybackSpeed(nextPlayerSpeed.ratio);
+    emit(
+      loadedState.copyWith(
+        playerSpeed: nextPlayerSpeed,
+      ),
+    );
   }
 }

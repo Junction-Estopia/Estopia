@@ -10,6 +10,8 @@ final class AppColor {
   final Color text3;
   final Color text4;
 
+  final Color border;
+
   final Color accent;
   final Color onAccent;
 
@@ -21,6 +23,7 @@ final class AppColor {
     required this.text2,
     required this.text3,
     required this.text4,
+    required this.border,
     required this.accent,
     required this.onAccent,
   });

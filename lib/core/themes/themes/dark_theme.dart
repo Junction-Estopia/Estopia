@@ -18,6 +18,7 @@ final class DarkTheme extends AppTheme {
     text2: Palette.grey200,
     text3: Palette.grey300,
     text4: Palette.grey700,
+    border: Palette.grey400,
     accent: Palette.yellow,
     onAccent: Palette.grey900,
   );

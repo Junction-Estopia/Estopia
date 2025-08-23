@@ -9,6 +9,7 @@ abstract final class Palette {
   static const grey900 = Color(0xFF111111);
   static const grey700 = Color(0xFF2C2C42);
   static const grey500 = Color(0xFF767676);
+  static const grey400 = Color(0xFF888888);
   static const grey300 = Color(0xFFCCCCCC);
   static const grey200 = Color(0xFFE6E6E6);
   static const white = Color(0xFFFFFFFF);

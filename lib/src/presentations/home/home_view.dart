@@ -60,73 +60,105 @@ class HomeView extends StatelessWidget {
                 /// Subtitle
                 Container(
                   padding: EdgeInsets.symmetric(
-                    vertical: 16,
+                    vertical: 12,
                   ),
                   margin: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: context.color.text4,
+                      color: context.color.border,
                     ),
                   ),
-                  child: Row(
+                  child: Column(
                     children: [
-                      /// Left button
-                      Button(
-                        disabled: !state.isPrevious,
-                        padding: EdgeInsets.all(0),
-                        builder: (isPressed) => Icon(
-                          CupertinoIcons.chevron_left,
-                          color: isPressed
-                              ? context.color.text4
-                              : context.color.text1,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 12,
+                          right: 12,
+                          bottom: 12,
                         ),
-                        onTap: () {
-                          viewModel.changeLecture(state.index - 1);
-                        },
-                      ),
+                        child: Row(
+                          children: [
+                            /// Speed
+                            Button(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(99),
+                                border: Border.all(
+                                  color: context.color.border,
+                                ),
+                              ),
+                              height: 32,
+                              width: 55,
+                              padding: EdgeInsets.all(0),
+                              text: state.playerSpeed.label,
+                              textStyle: context.typo.body1,
+                              onTap: viewModel.changePlayerSpeed,
+                            ),
 
-                      /// Subscription
-                      Expanded(
-                        child: switch (state.subtitleMode) {
-                          SubtitleMode.origin => () {
-                            final origin = state.lecture.subtitle.origin;
-                            return state.hasOriginBold
-                                ? DefaultTextStyle(
-                                    style: context.typo.headline4,
-                                    child: HighlightedText(
-                                      textAlign: TextAlign.center,
-                                      origin.highlightedText,
-                                      color: context.color.accent,
-                                    ),
-                                  )
-                                : Text(
-                                    origin.text,
-                                    textAlign: TextAlign.center,
-                                  );
-                          }(),
-                          SubtitleMode.mixed => Text(
-                            state.lecture.subtitle.mixed,
-                          ),
-                          SubtitleMode.korean => Text(
-                            state.lecture.subtitle.korean,
-                          ),
-                        },
-                      ),
-
-                      /// Right button
-                      Button(
-                        disabled: !state.isNext,
-                        padding: EdgeInsets.all(0),
-                        builder: (isPressed) => Icon(
-                          CupertinoIcons.chevron_right,
-                          color: isPressed
-                              ? context.color.text4
-                              : context.color.text1,
+                            /// Action
+                          ],
                         ),
-                        onTap: () {
-                          viewModel.changeLecture(state.index + 1);
-                        },
+                      ),
+                      Row(
+                        children: [
+                          /// Left button
+                          Button(
+                            disabled: !state.isPrevious,
+                            padding: EdgeInsets.all(0),
+                            builder: (isPressed) => Icon(
+                              CupertinoIcons.chevron_left,
+                              color: isPressed
+                                  ? context.color.text4
+                                  : context.color.text1,
+                            ),
+                            onTap: () {
+                              viewModel.changeLecture(state.index - 1);
+                            },
+                          ),
+
+                          /// Subscription
+                          Expanded(
+                            child: switch (state.subtitleMode) {
+                              SubtitleMode.origin => () {
+                                final origin = state.lecture.subtitle.origin;
+                                return state.hasOriginBold
+                                    ? DefaultTextStyle(
+                                        style: context.typo.headline4,
+                                        child: HighlightedText(
+                                          textAlign: TextAlign.center,
+                                          origin.highlightedText,
+                                          color: context.color.accent,
+                                        ),
+                                      )
+                                    : Text(
+                                        origin.text,
+                                        textAlign: TextAlign.center,
+                                      );
+                              }(),
+                              SubtitleMode.mixed => Text(
+                                state.lecture.subtitle.mixed,
+                              ),
+                              SubtitleMode.korean => Text(
+                                state.lecture.subtitle.korean,
+                              ),
+                            },
+                          ),
+
+                          /// Right button
+                          Button(
+                            disabled: !state.isNext,
+                            padding: EdgeInsets.all(0),
+                            builder: (isPressed) => Icon(
+                              CupertinoIcons.chevron_right,
+                              color: isPressed
+                                  ? context.color.text4
+                                  : context.color.text1,
+                            ),
+                            onTap: () {
+                              viewModel.changeLecture(state.index + 1);
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),
