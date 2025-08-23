@@ -1,4 +1,5 @@
 import 'package:estopia/core/lang/generated/l10n.dart';
+import 'package:estopia/src/presentations/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
+      home: HomeView(),
     );
   }
 }
