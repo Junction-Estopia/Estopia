@@ -24,10 +24,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "appName": MessageLookupByLibrary.simpleMessage("에스토피아"),
     "koreanGuide": MessageLookupByLibrary.simpleMessage("영어 어순과 친해져 보세요."),
-    "koreanMode": MessageLookupByLibrary.simpleMessage("한국어 모드"),
-    "mixedMode": MessageLookupByLibrary.simpleMessage("믹스 모드"),
+    "koreanMode": MessageLookupByLibrary.simpleMessage("한국어 자막"),
+    "mixedMode": MessageLookupByLibrary.simpleMessage("믹스 자막"),
     "originGuide": MessageLookupByLibrary.simpleMessage("꼭 들어야 할 부분이 강조돼 있어요."),
-    "originMode": MessageLookupByLibrary.simpleMessage("원본 모드"),
+    "originMode": MessageLookupByLibrary.simpleMessage("원본 자막"),
     "vocabulary": MessageLookupByLibrary.simpleMessage("어휘"),
   };
 }

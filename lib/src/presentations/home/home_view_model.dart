@@ -30,8 +30,8 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
           lectures: lectures,
           subtitleMode: SubtitleMode.origin,
           preSubtitleMode: SubtitleMode.origin,
-          hasOriginBold: true,
-          hasEnglishReorder: true,
+          hasOriginBold: false,
+          hasEnglishReorder: false,
           videoController: videoController,
         ),
       );
@@ -64,6 +64,8 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
         loadedState.copyWith(
           index: index,
           subtitleMode: SubtitleMode.origin,
+          hasEnglishReorder: false,
+          hasOriginBold: false,
           videoController: videoController,
         ),
       );

@@ -26,12 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "koreanGuide": MessageLookupByLibrary.simpleMessage(
       "Get to know English word order",
     ),
-    "koreanMode": MessageLookupByLibrary.simpleMessage("Korean Mode"),
-    "mixedMode": MessageLookupByLibrary.simpleMessage("Mixed Mode"),
+    "koreanMode": MessageLookupByLibrary.simpleMessage("Korean Subs"),
+    "mixedMode": MessageLookupByLibrary.simpleMessage("Mixed Subs"),
     "originGuide": MessageLookupByLibrary.simpleMessage(
       "Key parts are highlighted.",
     ),
-    "originMode": MessageLookupByLibrary.simpleMessage("Original Mode"),
+    "originMode": MessageLookupByLibrary.simpleMessage("Original Subs"),
     "vocabulary": MessageLookupByLibrary.simpleMessage("Vocabulary"),
   };
 }

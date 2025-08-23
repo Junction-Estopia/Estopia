@@ -1,9 +1,9 @@
 {
   "@@locale": "ko",
   "appName": "Estopia",
-  "originMode": "Original Mode",
-  "mixedMode": "Mixed Mode",
-  "koreanMode": "Korean Mode",
+  "originMode": "Original Subs",
+  "mixedMode": "Mixed Subs",
+  "koreanMode": "Korean Subs",
   "originGuide": "Key parts are highlighted.",
   "vocabulary": "Vocabulary",
   "koreanGuide": "Get to know English word order"

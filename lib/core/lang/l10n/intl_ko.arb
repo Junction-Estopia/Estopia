@@ -1,9 +1,9 @@
 {
   "@@locale": "en",
   "appName": "에스토피아",
-  "originMode": "원본 모드",
-  "mixedMode": "믹스 모드",
-  "koreanMode": "한국어 모드",
+  "originMode": "원본 자막",
+  "mixedMode": "믹스 자막",
+  "koreanMode": "한국어 자막",
   "originGuide": "꼭 들어야 할 부분이 강조돼 있어요.",
   "vocabulary": "어휘",
   "koreanGuide": "영어 어순과 친해져 보세요."

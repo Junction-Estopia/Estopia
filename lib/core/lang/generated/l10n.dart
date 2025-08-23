@@ -60,24 +60,24 @@ class S {
     return Intl.message('Estopia', name: 'appName', desc: '', args: []);
   }
 
-  /// `Original Mode`
+  /// `Original Subs`
   String get originMode {
     return Intl.message(
-      'Original Mode',
+      'Original Subs',
       name: 'originMode',
       desc: '',
       args: [],
     );
   }
 
-  /// `Mixed Mode`
+  /// `Mixed Subs`
   String get mixedMode {
-    return Intl.message('Mixed Mode', name: 'mixedMode', desc: '', args: []);
+    return Intl.message('Mixed Subs', name: 'mixedMode', desc: '', args: []);
   }
 
-  /// `Korean Mode`
+  /// `Korean Subs`
   String get koreanMode {
-    return Intl.message('Korean Mode', name: 'koreanMode', desc: '', args: []);
+    return Intl.message('Korean Subs', name: 'koreanMode', desc: '', args: []);
   }
 
   /// `Key parts are highlighted.`
