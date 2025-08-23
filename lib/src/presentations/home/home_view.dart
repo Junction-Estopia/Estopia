@@ -38,223 +38,286 @@ class HomeView extends StatelessWidget {
                 ),
 
                 /// Scroll
-                SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 12,
-                  ),
-                  child: Column(
-                    children: [
-                      /// Subtitle mode
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: context.color.border,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 12,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: SubtitleMode.values.map((mode) {
-                            final hasFocus = mode == state.subtitleMode;
-                            return Button(
-                              text: mode.label,
-                              height: 32,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  colors: hasFocus
-                                      ? [
-                                          Color(0xFF54CAEF),
-                                          Color(0xFF3246F7),
-                                        ]
-                                      : [
-                                          context.color.surface,
-                                          context.color.surface,
-                                        ],
-                                ),
-                              ),
-                              textStyle: context.typo.body1.copyWith(
-                                fontWeight: hasFocus
-                                    ? context.typo.bold
-                                    : context.typo.semiBold,
-                              ),
-                              textColor: hasFocus
-                                  ? Palette.white
-                                  : context.color.text4,
-
-                              onTap: () {
-                                viewModel.changeSubtitleModel(mode);
-                              },
-                            );
-                          }).toList(),
-                        ),
-                      ),
-
-                      /// Subtitle
-                      AnimatedContainer(
-                        duration: Duration(microseconds: 333),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 12,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: context.color.border,
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 12,
-                                right: 12,
-                                bottom: 12,
-                              ),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  const SizedBox(width: double.infinity),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      /// Left button
-                                      Button(
-                                        disabled: !state.isPrevious,
-                                        padding: EdgeInsets.all(0),
-                                        builder: (isPressed) => Icon(
-                                          CupertinoIcons.chevron_left,
-                                          color: isPressed
-                                              ? context.color.text4
-                                              : context.color.text1,
-                                        ),
-                                        onTap: () {
-                                          viewModel.changeLecture(
-                                            state.index - 1,
-                                          );
-                                        },
-                                      ),
-
-                                      const SizedBox(width: 16),
-
-                                      /// Right button
-                                      Button(
-                                        disabled: !state.isNext,
-                                        padding: EdgeInsets.all(0),
-                                        builder: (isPressed) => Icon(
-                                          CupertinoIcons.chevron_right,
-                                          color: isPressed
-                                              ? context.color.text4
-                                              : context.color.text1,
-                                        ),
-                                        onTap: () {
-                                          viewModel.changeLecture(
-                                            state.index + 1,
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-
-                                  /// Speed
-                                  Positioned(
-                                    left: 0,
-                                    child: Button(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(99),
-                                        border: Border.all(
-                                          color: context.color.border,
-                                        ),
-                                      ),
-                                      height: 32,
-                                      width: 55,
-                                      padding: EdgeInsets.all(0),
-                                      text: state.playerSpeed.label,
-                                      textStyle: context.typo.body1,
-                                      onTap: viewModel.changePlayerSpeed,
-                                    ),
-                                  ),
-
-                                  /// Action
-                                  Positioned(
-                                    right: 0,
-                                    child: CupertinoSwitch(
-                                      value: state.hasOriginBold,
-                                      activeTrackColor: context.color.accent,
-                                      onChanged: viewModel.changeOriginBold,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.all(12),
+                    child: Column(
+                      children: [
+                        /// Subtitle mode
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: context.color.border,
                             ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 12,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: SubtitleMode.values.map((mode) {
+                              final hasFocus = mode == state.subtitleMode;
+                              return Button(
+                                text: mode.label,
+                                height: 32,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: hasFocus
+                                        ? [
+                                            Color(0xFF54CAEF),
+                                            Color(0xFF3246F7),
+                                          ]
+                                        : [
+                                            context.color.surface,
+                                            context.color.surface,
+                                          ],
+                                  ),
+                                ),
+                                textStyle: context.typo.body1.copyWith(
+                                  fontWeight: hasFocus
+                                      ? context.typo.bold
+                                      : context.typo.semiBold,
+                                ),
+                                textColor: hasFocus
+                                    ? Palette.white
+                                    : context.color.text4,
 
-                            /// Subscription
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 8,
-                                horizontal: 16,
-                              ),
-                              child: DefaultTextStyle(
-                                style: context.typo.headline4,
-                                child: switch (state.subtitleMode) {
-                                  SubtitleMode.origin => () {
-                                    final origin =
-                                        state.lecture.subtitle.origin;
-                                    return state.hasOriginBold
-                                        ? HighlightedText(
-                                            textAlign: TextAlign.center,
-                                            origin.highlightedText,
-                                            color: context.color.accent,
-                                          )
-                                        : Text(
-                                            origin.text,
-                                            textAlign: TextAlign.center,
-                                          );
-                                  }(),
-                                  SubtitleMode.mixed => Text(
-                                    state.lecture.subtitle.mixed,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  SubtitleMode.korean => Text(
-                                    state.lecture.subtitle.korean,
-                                    textAlign: TextAlign.center,
-                                  ),
+                                onTap: () {
+                                  viewModel.changeSubtitleModel(mode);
                                 },
-                              ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+
+                        /// Subtitle
+                        AnimatedContainer(
+                          duration: Duration(microseconds: 333),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 12,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: context.color.border,
                             ),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 12,
+                                  right: 12,
+                                  bottom: 12,
+                                ),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    const SizedBox(width: double.infinity),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        /// Left button
+                                        Button(
+                                          disabled: !state.isPrevious,
+                                          padding: EdgeInsets.all(0),
+                                          builder: (isPressed) => Icon(
+                                            CupertinoIcons.chevron_left,
+                                            color: isPressed
+                                                ? context.color.text4
+                                                : context.color.text1,
+                                          ),
+                                          onTap: () {
+                                            viewModel.changeLecture(
+                                              state.index - 1,
+                                            );
+                                          },
+                                        ),
 
-                            const SizedBox(height: 24),
+                                        const SizedBox(width: 16),
 
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Palette.grey100,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                vertical: 8,
-                                horizontal: 32,
-                              ),
-                              child: Text(
-                                S.current.originGuide,
-                                style: context.typo.body2.copyWith(
-                                  color: Palette.grey500,
+                                        /// Right button
+                                        Button(
+                                          disabled: !state.isNext,
+                                          padding: EdgeInsets.all(0),
+                                          builder: (isPressed) => Icon(
+                                            CupertinoIcons.chevron_right,
+                                            color: isPressed
+                                                ? context.color.text4
+                                                : context.color.text1,
+                                          ),
+                                          onTap: () {
+                                            viewModel.changeLecture(
+                                              state.index + 1,
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
+
+                                    /// Speed
+                                    Positioned(
+                                      left: 0,
+                                      child: Button(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            99,
+                                          ),
+                                          border: Border.all(
+                                            color: context.color.border,
+                                          ),
+                                        ),
+                                        height: 32,
+                                        width: 55,
+                                        padding: EdgeInsets.all(0),
+                                        text: state.playerSpeed.label,
+                                        textStyle: context.typo.body1,
+                                        onTap: viewModel.changePlayerSpeed,
+                                      ),
+                                    ),
+
+                                    /// Action
+                                    Positioned(
+                                      right: 0,
+                                      child: CupertinoSwitch(
+                                        value: state.hasOriginBold,
+                                        activeTrackColor: context.color.accent,
+                                        onChanged: viewModel.changeOriginBold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          ],
+
+                              /// Subscription
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 16,
+                                ),
+                                child: DefaultTextStyle(
+                                  style: context.typo.headline4,
+                                  child: switch (state.subtitleMode) {
+                                    SubtitleMode.origin => () {
+                                      final origin =
+                                          state.lecture.subtitle.origin;
+                                      return state.hasOriginBold
+                                          ? HighlightedText(
+                                              textAlign: TextAlign.center,
+                                              origin.highlightedText,
+                                              color: context.color.accent,
+                                            )
+                                          : Text(
+                                              origin.text,
+                                              textAlign: TextAlign.center,
+                                            );
+                                    }(),
+                                    SubtitleMode.mixed => Text(
+                                      state.lecture.subtitle.mixed,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    SubtitleMode.korean => Text(
+                                      state.lecture.subtitle.korean,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  },
+                                ),
+                              ),
+
+                              const SizedBox(height: 24),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Palette.grey100,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 32,
+                                ),
+                                child: Text(
+                                  S.current.originGuide,
+                                  style: context.typo.body2.copyWith(
+                                    color: Palette.grey500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ].gap(8),
+
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: context.color.border,
+                            ),
+                          ),
+                          padding: EdgeInsets.all(12),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: Text(
+                                  S.current.vocabulary,
+                                  style: context.typo.headline4.copyWith(
+                                    color: context.color.accent,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              ...state.lecture.vocabularyies.map((vocabulary) {
+                                return Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        vocabulary.word,
+                                        textAlign: TextAlign.start,
+                                        style: context.typo.headline6.copyWith(
+                                          fontWeight: context.typo.semiBold,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: vocabulary.meanings.entries
+                                            .map(
+                                              (entry) {
+                                                final (pos, meaning) = (
+                                                  entry.key,
+                                                  entry.value,
+                                                );
+                                                return Text(
+                                                  "$pos. $meaning",
+                                                  style: context.typo.body1,
+                                                );
+                                              },
+                                            )
+                                            .toList(),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              }),
+                            ].gap(8),
+                          ),
+                        ),
+                      ].gap(8),
+                    ),
                   ),
                 ),
               ],

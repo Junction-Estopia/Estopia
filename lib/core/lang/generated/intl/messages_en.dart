@@ -27,5 +27,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "mixedMode": MessageLookupByLibrary.simpleMessage("믹스 모드"),
     "originGuide": MessageLookupByLibrary.simpleMessage("꼭 들어야 할 부분이 강조돼 있어요."),
     "originMode": MessageLookupByLibrary.simpleMessage("원본 모드"),
+    "vocabulary": MessageLookupByLibrary.simpleMessage("어휘"),
   };
 }

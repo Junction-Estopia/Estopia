@@ -29,5 +29,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Key parts are highlighted.",
     ),
     "originMode": MessageLookupByLibrary.simpleMessage("Original Mode"),
+    "vocabulary": MessageLookupByLibrary.simpleMessage("Vocabulary"),
   };
 }

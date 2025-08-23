@@ -22,7 +22,7 @@ class Pretendard implements TypoFamily {
   FontWeight get bold => FontWeight.w800;
 
   @override
-  FontWeight get semiBold => FontWeight.w700;
+  FontWeight get semiBold => FontWeight.w600;
 
   @override
   FontWeight get regular => FontWeight.w400;
