@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "appName": MessageLookupByLibrary.simpleMessage("Estopia"),
     "koreanMode": MessageLookupByLibrary.simpleMessage("Korean Mode"),
     "mixedMode": MessageLookupByLibrary.simpleMessage("Mixed Mode"),
-    "originMode": MessageLookupByLibrary.simpleMessage("Origin Mode"),
+    "originGuide": MessageLookupByLibrary.simpleMessage(
+      "Key parts are highlighted.",
+    ),
+    "originMode": MessageLookupByLibrary.simpleMessage("Original Mode"),
   };
 }

@@ -15,10 +15,10 @@ final class DarkTheme extends AppTheme {
     background: Palette.black.withValues(alpha: 0.2),
     onBackground: Palette.white,
     text1: Palette.white,
-    text2: Palette.grey200,
+    text2: Palette.grey100,
     text3: Palette.grey300,
     text4: Palette.grey700,
-    border: Palette.grey400,
+    border: Palette.grey200,
     accent: Palette.yellow,
     onAccent: Palette.grey900,
   );

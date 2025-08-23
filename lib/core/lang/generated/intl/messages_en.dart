@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "appName": MessageLookupByLibrary.simpleMessage("에스토피아"),
     "koreanMode": MessageLookupByLibrary.simpleMessage("한국어 모드"),
     "mixedMode": MessageLookupByLibrary.simpleMessage("믹스 모드"),
+    "originGuide": MessageLookupByLibrary.simpleMessage("꼭 들어야 할 부분이 강조돼 있어요."),
     "originMode": MessageLookupByLibrary.simpleMessage("원본 모드"),
   };
 }

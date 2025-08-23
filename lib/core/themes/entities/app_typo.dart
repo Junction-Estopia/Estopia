@@ -6,6 +6,7 @@ abstract class AppTypo {
   TypoFamily get typoFamily;
   FontWeight get regular => typoFamily.regular;
   FontWeight get semiBold => typoFamily.semiBold;
+  FontWeight get bold => typoFamily.bold;
 
   TextStyle get headline1;
   TextStyle get headline2;
@@ -35,6 +36,9 @@ class DefaultTypo implements AppTypo {
 
   @override
   late FontWeight semiBold = typoFamily.semiBold;
+
+  @override
+  late FontWeight bold = typoFamily.bold;
 
   /// Headline
   @override

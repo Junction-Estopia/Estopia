@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:estopia/core/themes/components/assets/icon_asset.dart';
 import 'package:estopia/src/services/theme_service.dart';
 import 'package:flutter/material.dart';
@@ -50,9 +51,10 @@ class _ButtonState extends State<Button> {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: widget.onTap,
-      child: Container(
+      child: AnimatedContainer(
         width: widget.width,
         height: widget.height,
+        duration: Duration(milliseconds: 333),
         constraints: BoxConstraints(
           minHeight: min(widget.height ?? 48, 48),
           minWidth: min(widget.width ?? 48, 48),
@@ -66,7 +68,7 @@ class _ButtonState extends State<Button> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (widget.text != null)
-                  Text(
+                  AutoSizeText(
                     widget.text!,
                     style: (widget.textStyle ?? context.typo.headline4)
                         .copyWith(
@@ -74,6 +76,8 @@ class _ButtonState extends State<Button> {
                               ? context.color.text4
                               : widget.textColor,
                         ),
+                    minFontSize: 12,
+                    maxLines: 1,
                   ),
 
                 if (widget.icon != null)

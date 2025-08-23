@@ -1,7 +1,8 @@
 {
-  "@@locale": "en",
-  "appName": "에스토피아",
-  "originMode": "원본 모드",
-  "mixedMode": "믹스 모드",
-  "koreanMode": "한국어 모드"
+  "@@locale": "ko",
+  "appName": "Estopia",
+  "originMode": "Original Mode",
+  "mixedMode": "Mixed Mode",
+  "koreanMode": "Korean Mode",
+  "originGuide": "Key parts are highlighted."
 }

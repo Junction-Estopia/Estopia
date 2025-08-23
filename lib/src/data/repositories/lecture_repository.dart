@@ -27,9 +27,9 @@ class LectureRepository {
         subtitle: Subtitle(
           origin: OriginSubtitle(
             text:
-                "There are three primary theories. Cocerning sediment flow rate. Each of these theories can be further subcategorized.",
+                "There are three primary theories cocerning sediment flow rate. Each of these theories can be further subcategorized.",
             highlightedText:
-                "There are three primary theories. <b>Cocerning</b> sediment flow rate. Each of these theories <b>can be further subcategorized</b>.",
+                "There are three primary theories <b>Cocerning</b> sediment flow rate. Each of these theories <b>can be further subcategorized</b>.",
           ),
           mixed:
               "it's the last thing i do is 운전 that car I will take that life men thousand times",

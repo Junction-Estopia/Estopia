@@ -18,7 +18,7 @@ final class LightTheme extends AppTheme {
     text2: Palette.grey700,
     text3: Palette.grey500,
     text4: Palette.grey300,
-    border: Palette.grey400,
+    border: Palette.grey300,
     accent: Palette.blue,
     onAccent: Palette.white,
   );

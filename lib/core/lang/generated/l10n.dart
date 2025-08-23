@@ -55,24 +55,39 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `에스토피아`
+  /// `Estopia`
   String get appName {
-    return Intl.message('에스토피아', name: 'appName', desc: '', args: []);
+    return Intl.message('Estopia', name: 'appName', desc: '', args: []);
   }
 
-  /// `원본 모드`
+  /// `Original Mode`
   String get originMode {
-    return Intl.message('원본 모드', name: 'originMode', desc: '', args: []);
+    return Intl.message(
+      'Original Mode',
+      name: 'originMode',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `믹스 모드`
+  /// `Mixed Mode`
   String get mixedMode {
-    return Intl.message('믹스 모드', name: 'mixedMode', desc: '', args: []);
+    return Intl.message('Mixed Mode', name: 'mixedMode', desc: '', args: []);
   }
 
-  /// `한국어 모드`
+  /// `Korean Mode`
   String get koreanMode {
-    return Intl.message('한국어 모드', name: 'koreanMode', desc: '', args: []);
+    return Intl.message('Korean Mode', name: 'koreanMode', desc: '', args: []);
+  }
+
+  /// `Key parts are highlighted.`
+  String get originGuide {
+    return Intl.message(
+      'Key parts are highlighted.',
+      name: 'originGuide',
+      desc: '',
+      args: [],
+    );
   }
 }
 

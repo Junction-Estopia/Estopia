@@ -57,4 +57,13 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
       ),
     );
   }
+
+  void changeOriginBold(bool hasOriginBold) {
+    final loadedState = state as LoadedState;
+    emit(
+      loadedState.copyWith(
+        hasOriginBold: hasOriginBold,
+      ),
+    );
+  }
 }
