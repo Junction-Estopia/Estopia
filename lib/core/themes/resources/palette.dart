@@ -2,6 +2,7 @@ import 'dart:ui';
 
 abstract final class Palette {
   static const yellow = Color(0xFFFFE033);
+  static const blue = Color(0xFF19C8FF);
 
   /// Grey scale
   static const black = Color(0xFF000000);

@@ -92,8 +92,18 @@ class HomeView extends StatelessWidget {
                           SubtitleMode.origin => () {
                             final origin = state.lecture.subtitle.origin;
                             return state.hasOriginBold
-                                ? HighlightedText(origin.highlightedText)
-                                : Text(origin.text);
+                                ? DefaultTextStyle(
+                                    style: context.typo.headline4,
+                                    child: HighlightedText(
+                                      textAlign: TextAlign.center,
+                                      origin.highlightedText,
+                                      color: context.color.accent,
+                                    ),
+                                  )
+                                : Text(
+                                    origin.text,
+                                    textAlign: TextAlign.center,
+                                  );
                           }(),
                           SubtitleMode.mixed => Text(
                             state.lecture.subtitle.mixed,
