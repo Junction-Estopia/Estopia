@@ -2,131 +2,123 @@ import 'package:estopia/core/themes/resources/typo_family.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppTypo {
-  /// Color
   Color get color;
-
-  /// TypoFamily
   TypoFamily get typoFamily;
+  FontWeight get regular => typoFamily.regular;
+  FontWeight get semiBold => typoFamily.semiBold;
 
-  /// Head
-  TextStyle get headBold;
-
-  /// Body1
-  TextStyle get body1Bold;
-  TextStyle get body1Regular;
-
-  /// Body2
-  TextStyle get body2Bold;
-  TextStyle get body2Bold2;
-  TextStyle get body2Regular;
-
-  /// Button
-  TextStyle get buttonBold;
-  TextStyle get buttonBold2;
-
-  /// Caption1
-  TextStyle get caption1Regular;
-
-  /// Caption2
-  TextStyle get caption2Regular;
+  TextStyle get headline1;
+  TextStyle get headline2;
+  TextStyle get headline3;
+  TextStyle get headline4;
+  TextStyle get headline5;
+  TextStyle get headline6;
+  TextStyle get subtitle1;
+  TextStyle get subtitle2;
+  TextStyle get body1;
+  TextStyle get body2;
 }
 
 class DefaultTypo implements AppTypo {
   DefaultTypo({required this.color});
 
+  /// Font Color
   @override
   final Color color;
 
   @override
-  final TypoFamily typoFamily = KoddiUDOnGothic();
+  final TypoFamily typoFamily = Pretendard();
+
+  /// Font Weight
+  @override
+  late FontWeight regular = typoFamily.regular;
 
   @override
-  late final TextStyle headBold = TextStyle(
+  late FontWeight semiBold = typoFamily.semiBold;
+
+  /// Headline
+  @override
+  late final TextStyle headline1 = TextStyle(
+    height: 1.3,
     fontFamily: typoFamily.familyName,
-    fontWeight: typoFamily.bold,
-    fontSize: 32,
-    height: 1.4,
+    fontWeight: typoFamily.regular,
+    fontSize: 28,
     color: color,
   );
-
   @override
-  late final TextStyle body1Bold = TextStyle(
+  late final TextStyle headline2 = TextStyle(
+    height: 1.3,
     fontFamily: typoFamily.familyName,
-    fontWeight: typoFamily.bold,
+    fontWeight: typoFamily.regular,
     fontSize: 24,
-    height: 1.4,
     color: color,
   );
-
   @override
-  late final TextStyle body1Regular = TextStyle(
+  late final TextStyle headline3 = TextStyle(
+    height: 1.3,
+    fontFamily: typoFamily.familyName,
+    fontWeight: typoFamily.regular,
+    fontSize: 21,
+    color: color,
+  );
+  @override
+  late final TextStyle headline4 = TextStyle(
+    height: 1.3,
+    fontFamily: typoFamily.familyName,
+    fontWeight: typoFamily.regular,
+    fontSize: 20,
+    color: color,
+  );
+  @override
+  late final TextStyle headline5 = TextStyle(
+    height: 1.3,
+    fontFamily: typoFamily.familyName,
+    fontWeight: typoFamily.regular,
+    fontSize: 19,
+    color: color,
+  );
+  @override
+  late final TextStyle headline6 = TextStyle(
+    height: 1.3,
     fontFamily: typoFamily.familyName,
     fontWeight: typoFamily.regular,
     fontSize: 18,
-    height: 1.4,
     color: color,
   );
 
+  /// Subtitle
   @override
-  late final TextStyle body2Bold = TextStyle(
+  late final TextStyle subtitle1 = TextStyle(
+    height: 1.3,
     fontFamily: typoFamily.familyName,
-    fontWeight: typoFamily.bold,
+    fontWeight: typoFamily.regular,
     fontSize: 16,
-    height: 1.4,
     color: color,
   );
-
   @override
-  late final TextStyle body2Bold2 = TextStyle(
+  late final TextStyle subtitle2 = TextStyle(
+    height: 1.3,
     fontFamily: typoFamily.familyName,
-    fontWeight: typoFamily.bold,
-    fontSize: 17,
-    height: 1.4,
+    fontWeight: typoFamily.regular,
+    fontSize: 15,
     color: color,
   );
 
+  /// Body
   @override
-  late final TextStyle body2Regular = TextStyle(
+  late final TextStyle body1 = TextStyle(
+    height: 1.3,
+    fontFamily: typoFamily.familyName,
+    fontWeight: typoFamily.regular,
+    fontSize: 14,
+    color: color,
+  );
+  @override
+  late final TextStyle body2 = TextStyle(
+    height: 1.3,
     fontFamily: typoFamily.familyName,
     fontWeight: typoFamily.regular,
     fontSize: 12,
-    height: 1.4,
-    color: color,
-  );
-
-  @override
-  late final TextStyle buttonBold = TextStyle(
-    fontFamily: typoFamily.familyName,
-    fontWeight: typoFamily.bold,
-    fontSize: 24,
-    height: 1.4,
-    color: color,
-  );
-
-  @override
-  late final TextStyle buttonBold2 = TextStyle(
-    fontFamily: typoFamily.familyName,
-    fontWeight: typoFamily.bold,
-    fontSize: 18,
-    height: 1.4,
-    color: color,
-  );
-
-  @override
-  late final TextStyle caption1Regular = TextStyle(
-    fontFamily: typoFamily.familyName,
-    fontWeight: typoFamily.regular,
-    fontSize: 16,
-    height: 1.4,
-    color: color,
-  );
-
-  @override
-  late final TextStyle caption2Regular = TextStyle(
-    fontFamily: typoFamily.familyName,
-    fontWeight: typoFamily.regular,
-    fontSize: 22,
-    height: 1.4,
     color: color,
   );
 }

@@ -22,12 +22,12 @@ extension ThemeServiceExtension on BuildContext {
     appBarTheme: AppBarTheme(
       elevation: 0,
       scrolledUnderElevation: 0,
-      titleTextStyle: typo.headBold,
+      titleTextStyle: typo.headline1,
       backgroundColor: color.surface,
       iconTheme: IconThemeData(color: color.text1),
     ),
     textTheme: TextTheme(
-      bodyMedium: typo.body1Regular,
+      bodyMedium: typo.body1,
     ),
     dividerTheme: DividerThemeData(
       thickness: 1,

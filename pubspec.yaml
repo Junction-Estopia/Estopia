@@ -26,6 +26,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/videos/
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-SemiBold.otf
+        - asset: assets/fonts/Pretendard-Regular.otf
     
 flutter_intl:
   enabled: true

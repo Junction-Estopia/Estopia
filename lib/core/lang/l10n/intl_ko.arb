@@ -1,4 +1,7 @@
 {
   "@@locale": "ko",
-  "appName": "Estopia"
+  "appName": "Estopia",
+  "originMode": "Origin Mode",
+  "mixedMode": "Mixed Mode",
+  "koreanMode": "Korean Mode"
 }

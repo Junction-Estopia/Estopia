@@ -59,6 +59,21 @@ class S {
   String get appName {
     return Intl.message('에스토피아', name: 'appName', desc: '', args: []);
   }
+
+  /// `원본 모드`
+  String get originMode {
+    return Intl.message('원본 모드', name: 'originMode', desc: '', args: []);
+  }
+
+  /// `믹스 모드`
+  String get mixedMode {
+    return Intl.message('믹스 모드', name: 'mixedMode', desc: '', args: []);
+  }
+
+  /// `한국어 모드`
+  String get koreanMode {
+    return Intl.message('한국어 모드', name: 'koreanMode', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

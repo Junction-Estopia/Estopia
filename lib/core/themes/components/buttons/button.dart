@@ -64,7 +64,7 @@ class _ButtonState extends State<Button> {
                 if (widget.text != null)
                   Text(
                     widget.text!,
-                    style: (widget.textStyle ?? context.typo.buttonBold)
+                    style: (widget.textStyle ?? context.typo.headline4)
                         .copyWith(color: widget.textColor),
                   ),
 

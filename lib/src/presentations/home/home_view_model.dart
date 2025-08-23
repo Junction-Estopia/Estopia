@@ -1,5 +1,6 @@
 import 'package:estopia/core/base/base_view_model.dart';
 import 'package:estopia/src/data/repositories/lecture_repository.dart';
+import 'package:estopia/src/domain/entities/subtitle_mode.dart';
 import 'package:estopia/src/presentations/home/home_view_state.dart';
 import 'package:video_player/video_player.dart';
 
@@ -13,17 +14,23 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
 
   void init() {
     final lecture = lectureRepository.get();
-    final videoPlayerController = VideoPlayerController.asset(
+    final videoController = VideoPlayerController.asset(
       "assets/videos/sample.mp4",
     )..setLooping(true);
-    videoPlayerController.initialize().then((_) {
-      videoPlayerController.play();
+    videoController.initialize().then((_) {
+      videoController.play();
       emit(
         LoadedState(
           lecture: lecture,
-          videoPlayerController: videoPlayerController,
+          subtitleMode: SubtitleMode.origin,
+          videoController: videoController,
         ),
       );
     });
+  }
+
+  void changeSubtitleModel(SubtitleMode subtitleMode) {
+    final loadedState = state as LoadedState;
+    emit(loadedState.copyWith(subtitleMode: subtitleMode));
   }
 }

@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 abstract class TypoFamily {
   const TypoFamily({
     required this.familyName,
-    required this.bold,
+    required this.semiBold,
     required this.regular,
   });
 
   final String familyName;
-  final FontWeight bold;
+  final FontWeight semiBold;
   final FontWeight regular;
 }
 
-class KoddiUDOnGothic implements TypoFamily {
+class Pretendard implements TypoFamily {
   @override
-  String get familyName => "KoddiUDOnGothic";
+  String get familyName => "Pretendard";
 
   @override
-  FontWeight get bold => FontWeight.w700;
+  FontWeight get semiBold => FontWeight.w700;
 
   @override
   FontWeight get regular => FontWeight.w400;

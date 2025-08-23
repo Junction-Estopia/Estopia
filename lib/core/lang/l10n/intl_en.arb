@@ -1,4 +1,7 @@
 {
   "@@locale": "en",
-  "appName": "에스토피아"
+  "appName": "에스토피아",
+  "originMode": "원본 모드",
+  "mixedMode": "믹스 모드",
+  "koreanMode": "한국어 모드"
 }
