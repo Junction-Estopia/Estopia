@@ -33,9 +33,22 @@ class HomeView extends StatelessWidget {
             LoadedState() => Column(
               children: [
                 /// Video
-                AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: VideoPlayer(state.videoController),
+                GestureDetector(
+                  onTap: viewModel.videoStartAndPause,
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: VideoPlayer(state.videoController),
+                  ),
+                ),
+                VideoProgressIndicator(
+                  state.videoController,
+                  padding: EdgeInsets.all(0),
+                  allowScrubbing: true,
+                  colors: VideoProgressColors(
+                    playedColor: context.color.accent,
+                    bufferedColor: context.color.text4.withValues(alpha: 0.5),
+                    backgroundColor: context.color.text4.withValues(alpha: 0.5),
+                  ),
                 ),
 
                 /// Scroll

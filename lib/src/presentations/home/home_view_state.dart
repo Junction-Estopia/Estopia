@@ -20,6 +20,7 @@ class LoadedState extends HomeViewState {
   final SubtitleMode subtitleMode;
   final bool hasOriginBold;
   final bool hasEnglishReorder;
+  final bool isPlaying;
   final VideoPlayerController videoController;
   final PlayerSpeed playerSpeed;
 
@@ -40,6 +41,7 @@ class LoadedState extends HomeViewState {
     required this.subtitleMode,
     required this.hasOriginBold,
     required this.hasEnglishReorder,
+    required this.isPlaying,
     required this.videoController,
   });
 
@@ -51,6 +53,7 @@ class LoadedState extends HomeViewState {
     SubtitleMode? subtitleMode,
     bool? hasOriginBold,
     bool? hasEnglishReorder,
+    bool? isPlaying,
     VideoPlayerController? videoController,
   }) {
     return LoadedState(
@@ -61,6 +64,7 @@ class LoadedState extends HomeViewState {
       subtitleMode: subtitleMode ?? this.subtitleMode,
       hasOriginBold: hasOriginBold ?? this.hasOriginBold,
       hasEnglishReorder: hasEnglishReorder ?? this.hasEnglishReorder,
+      isPlaying: isPlaying ?? this.isPlaying,
       videoController: videoController ?? this.videoController,
     );
   }

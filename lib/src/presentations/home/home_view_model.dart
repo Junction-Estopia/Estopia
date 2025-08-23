@@ -30,6 +30,7 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
           lectures: lectures,
           subtitleMode: SubtitleMode.origin,
           preSubtitleMode: SubtitleMode.origin,
+          isPlaying: true,
           hasOriginBold: false,
           hasEnglishReorder: false,
           videoController: videoController,
@@ -70,6 +71,16 @@ class HomeViewModel extends BaseViewModel<HomeViewState> {
         ),
       );
     });
+  }
+
+  void videoStartAndPause() {
+    final loadedState = state as LoadedState;
+    if (loadedState.isPlaying) {
+      loadedState.videoController.pause();
+    } else {
+      loadedState.videoController.play();
+    }
+    emit(loadedState.copyWith(isPlaying: !loadedState.isPlaying));
   }
 
   void changePlayerSpeed() {
